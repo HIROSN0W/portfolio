@@ -212,6 +212,57 @@ class AnimationManager {
     }
 }
 
+// モバイルメニュー管理
+class MobileMenuManager {
+    constructor() {
+        this.menuToggle = document.getElementById('mobileMenuToggle');
+        this.nav = document.querySelector('nav');
+        this.navLinks = document.querySelectorAll('nav ul li a');
+        this.isOpen = false;
+        this.init();
+    }
+
+    init() {
+        if (this.menuToggle) {
+            this.menuToggle.addEventListener('click', () => this.toggleMenu());
+            
+            // メニューリンクをクリックしたらメニューを閉じる
+            this.navLinks.forEach(link => {
+                link.addEventListener('click', () => this.closeMenu());
+            });
+            
+            // 画面サイズが変更されたらメニューを閉じる
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    this.closeMenu();
+                }
+            });
+        }
+    }
+
+    toggleMenu() {
+        this.isOpen = !this.isOpen;
+        this.updateMenu();
+    }
+
+    closeMenu() {
+        this.isOpen = false;
+        this.updateMenu();
+    }
+
+    updateMenu() {
+        if (this.isOpen) {
+            this.menuToggle.classList.add('open');
+            this.nav.classList.add('open');
+            document.body.style.overflow = 'hidden'; // スクロールを無効化
+        } else {
+            this.menuToggle.classList.remove('open');
+            this.nav.classList.remove('open');
+            document.body.style.overflow = ''; // スクロールを有効化
+        }
+    }
+}
+
 // 初期化
 document.addEventListener('DOMContentLoaded', () => {
     new ThemeManager();
@@ -220,6 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new HeaderManager();
     new SkillAnimationManager();
     new AnimationManager();
+    new MobileMenuManager();
     
     // デバッグ用: スキルバーを手動でテストする関数をグローバルに追加
     window.testSkillBars = () => {
