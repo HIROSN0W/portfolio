@@ -1,101 +1,237 @@
-// スムーズスクロール
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            window.scrollTo({
-                top: target.offsetTop - 70,  // ヘッダーの高さを考慮
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-// ヘッダーのスクロールアニメーション
-const header = document.querySelector('header');
-let lastScrollY = 0;
-
-window.addEventListener('scroll', () => {
-    const currentScrollY = window.scrollY;
-    
-    if (currentScrollY > 100) {
-        header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-    } else {
-        header.style.boxShadow = 'none';
+// ダークモード切り替え機能
+class ThemeManager {
+    constructor() {
+        this.theme = localStorage.getItem('theme') || 'light';
+        this.themeToggle = document.getElementById('themeToggle');
+        this.init();
     }
-    
-    lastScrollY = currentScrollY;
-});
 
-// フォームのバリデーションとサブミット
-const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // 簡易的なバリデーション
-        const name = document.getElementById('name');
-        const email = document.getElementById('email');
-        const message = document.getElementById('message');
-        let isValid = true;
-        
-        if (!name.value.trim()) {
-            alert('お名前を入力してください');
-            isValid = false;
-        }
-        
-        if (!email.value.trim() || !isValidEmail(email.value)) {
-            alert('有効なメールアドレスを入力してください');
-            isValid = false;
-        }
-        
-        if (!message.value.trim()) {
-            alert('メッセージを入力してください');
-            isValid = false;
-        }
-        
-        if (isValid) {
-            // 本番環境では実際のフォーム送信処理をここに実装
-            alert('メッセージが送信されました！（デモのため、実際には送信されていません）');
-            contactForm.reset();
-        }
-    });
+    init() {
+        this.setTheme(this.theme);
+        this.themeToggle.addEventListener('click', () => this.toggleTheme());
+    }
+
+    setTheme(theme) {
+        this.theme = theme;
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        this.updateToggleIcon();
+    }
+
+    toggleTheme() {
+        const newTheme = this.theme === 'light' ? 'dark' : 'light';
+        this.setTheme(newTheme);
+    }
+
+    updateToggleIcon() {
+        const icon = this.themeToggle.querySelector('i');
+        icon.className = this.theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+    }
 }
 
-// メールアドレスの簡易検証
-function isValidEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
+// プリローダー
+class PreloaderManager {
+    constructor() {
+        this.preloader = document.getElementById('preloader');
+        this.init();
+    }
+
+    init() {
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                this.preloader.classList.add('hidden');
+                setTimeout(() => {
+                    this.preloader.style.display = 'none';
+                }, 300);
+            }, 500);
+        });
+    }
 }
 
-// アニメーション効果
-document.addEventListener('DOMContentLoaded', () => {
-    // スキルバーのアニメーション
-    const skillLevels = document.querySelectorAll('.skill-level');
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // 要素が表示されたらアニメーションのクラスを追加
-                entry.target.style.width = entry.target.style.width;
-                observer.unobserve(entry.target);
+// スムーズスクロール
+class SmoothScrollManager {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(anchor.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    }
+}
+
+// ヘッダーアニメーション
+class HeaderManager {
+    constructor() {
+        this.header = document.querySelector('header');
+        this.lastScrollY = 0;
+        this.init();
+    }
+
+    init() {
+        window.addEventListener('scroll', () => this.handleScroll());
+    }
+
+    handleScroll() {
+        const currentScrollY = window.scrollY;
+        
+        // ヘッダーの背景透明度とシャドウ
+        if (currentScrollY > 50) {
+            this.header.style.background = 'var(--header-bg)';
+            this.header.style.backdropFilter = 'var(--header-backdrop)';
+            this.header.style.boxShadow = 'var(--card-shadow)';
+        } else {
+            this.header.style.background = 'var(--header-bg)';
+            this.header.style.backdropFilter = 'var(--header-backdrop)';
+            this.header.style.boxShadow = 'none';
+        }
+
+        // アクティブセクションのハイライト
+        this.updateActiveSection();
+        
+        this.lastScrollY = currentScrollY;
+    }
+
+    updateActiveSection() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+        
+        let currentSection = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 150;
+            const sectionHeight = section.offsetHeight;
+            
+            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                currentSection = section.getAttribute('id');
             }
         });
-    });
-    
-    skillLevels.forEach(level => {
-        // 初期状態では幅を0に設定
-        const width = level.style.width;
-        level.style.width = '0';
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentSection}`) {
+                link.classList.add('active');
+            }
+        });
+    }
+}
+
+// スキルバーアニメーション
+class SkillAnimationManager {
+    constructor() {
+        this.skillLevels = document.querySelectorAll('.skill-level');
+        this.animated = new Set(); // 既にアニメーションしたスキルを追跡
+        this.init();
+    }
+
+    init() {
+        console.log('スキルバー要素数:', this.skillLevels.length);
         
-        // 少し遅延させてから元の幅に戻す（アニメーション効果）
+        // 初期状態でスキルバーの幅を0に設定
+        this.skillLevels.forEach((level, index) => {
+            level.style.width = '0%';
+            level.style.transition = 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
+            console.log(`スキル ${index}: data-width=${level.getAttribute('data-width')}`);
+        });
+
+        // より低いthresholdで確実に発火させる
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !this.animated.has(entry.target)) {
+                    console.log('スキルバーアニメーション開始:', entry.target);
+                    this.animateSkillBar(entry.target);
+                    this.animated.add(entry.target);
+                }
+            });
+        }, { 
+            threshold: 0.1,
+            rootMargin: '0px 0px -10px 0px'
+        });
+
+        this.skillLevels.forEach(level => {
+            observer.observe(level);
+        });
+
+        // フォールバック: 3秒後に強制的にアニメーション実行
         setTimeout(() => {
-            level.style.transition = 'width 1s ease';
-            level.style.width = width;
-        }, 300);
+            this.skillLevels.forEach(level => {
+                if (!this.animated.has(level)) {
+                    console.log('フォールバックアニメーション実行:', level);
+                    this.animateSkillBar(level);
+                    this.animated.add(level);
+                }
+            });
+        }, 3000);
+    }
+
+    animateSkillBar(element) {
+        const targetWidth = element.getAttribute('data-width');
+        console.log('アニメーション実行:', element, 'target:', targetWidth);
         
-        observer.observe(level);
-    });
+        if (targetWidth) {
+            setTimeout(() => {
+                element.style.width = targetWidth + '%';
+                console.log('幅設定完了:', element.style.width);
+            }, 300);
+        }
+    }
+}
+
+// 要素のフェードインアニメーション
+class AnimationManager {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // アニメーション対象の要素を選択
+        const animateElements = document.querySelectorAll('.section-title, .project-card, .skill-category, .about-text');
+        animateElements.forEach(el => observer.observe(el));
+    }
+}
+
+// 初期化
+document.addEventListener('DOMContentLoaded', () => {
+    new ThemeManager();
+    new PreloaderManager();
+    new SmoothScrollManager();
+    new HeaderManager();
+    new SkillAnimationManager();
+    new AnimationManager();
+    
+    // デバッグ用: スキルバーを手動でテストする関数をグローバルに追加
+    window.testSkillBars = () => {
+        document.querySelectorAll('.skill-level').forEach(level => {
+            const targetWidth = level.getAttribute('data-width');
+            if (targetWidth) {
+                level.style.width = targetWidth + '%';
+                console.log('手動テスト:', level, targetWidth + '%');
+            }
+        });
+    };
+    
+    console.log('ポートフォリオサイト初期化完了');
+    console.log('デバッグ用: コンソールで testSkillBars() を実行してスキルバーをテストできます');
 });

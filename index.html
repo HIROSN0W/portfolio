@@ -3,21 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ポートフォリオ</title>
+    <title>ポートフォリオ - NAKAGAWA HIROYUKI</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- プリローダー -->
+    <div class="preloader" id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- ダークモード切り替えボタン -->
+    <button class="theme-toggle" id="themeToggle" aria-label="ダークモード切り替え">
+        <i class="fas fa-moon"></i>
+    </button>
     <!-- ヘッダー -->
     <header>
         <div class="container">
-            <h1>名前</h1>
+            <h1>NAKAGAWA HIROYUKI</h1>
             <nav>
                 <ul>
                     <li><a href="#about">自己紹介</a></li>
                     <li><a href="#skills">スキル</a></li>
                     <li><a href="#projects">プロジェクト</a></li>
-                    <li><a href="#contact">連絡先</a></li>
                 </ul>
             </nav>
         </div>
@@ -27,7 +38,11 @@
     <section class="hero">
         <div class="container">
             <h2>ようこそ、私のポートフォリオへ</h2>
-            <p>フロントエンド・バックエンド開発者</p>
+            <p>普段学校で学んでいることや、趣味で取り組んでいるプロジェクトを紹介します。</p>
+            <div class="hero-cta">
+                <a href="#projects" class="btn">プロジェクトを見る</a>
+                <a href="#about" class="btn btn-secondary">詳しく見る</a>
+            </div>
         </div>
     </section>
 
@@ -37,8 +52,8 @@
             <h2 class="section-title">自己紹介</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>ここに自己紹介文を書きます。経歴、専門知識、興味のある分野などについて詳しく説明します。</p>
-                    <p>これまでの経験や学んできたこと、そして目指していることについて書きましょう。</p>
+                    <p>私は、テクノロジーとエンジニアリング、特にWeb・アプリ開発、AI、データサイエンスといった情報技術全般に強い関心を持っています。</p>
+                    <p>学業では電子情報工学を専攻しており、プログラミングやシステム設計について学んでいます。</p>
                 </div>
                 <div class="about-image">
                     <!-- プロフィール画像をここに配置 -->
@@ -56,21 +71,21 @@
                 <div class="skill-category">
                     <h3>フロントエンド</h3>
                     <div class="skill-item">
-                        <span>HTML/CSS</span>
+                        <span>HTML/CSS <span class="skill-percentage">90%</span></span>
                         <div class="skill-bar">
-                            <div class="skill-level" style="width: 90%"></div>
+                            <div class="skill-level" style="width: 0%" data-width="90"></div>
                         </div>
                     </div>
                     <div class="skill-item">
-                        <span>JavaScript</span>
+                        <span>JavaScript <span class="skill-percentage">85%</span></span>
                         <div class="skill-bar">
-                            <div class="skill-level" style="width: 85%"></div>
+                            <div class="skill-level" style="width: 0%" data-width="85"></div>
                         </div>
                     </div>
                     <div class="skill-item">
-                        <span>React</span>
+                        <span>React <span class="skill-percentage">80%</span></span>
                         <div class="skill-bar">
-                            <div class="skill-level" style="width: 80%"></div>
+                            <div class="skill-level" style="width: 0%" data-width="80"></div>
                         </div>
                     </div>
                 </div>
@@ -78,21 +93,21 @@
                 <div class="skill-category">
                     <h3>バックエンド</h3>
                     <div class="skill-item">
-                        <span>Node.js</span>
+                        <span>Node.js <span class="skill-percentage">75%</span></span>
                         <div class="skill-bar">
-                            <div class="skill-level" style="width: 75%"></div>
+                            <div class="skill-level" style="width: 0%" data-width="75"></div>
                         </div>
                     </div>
                     <div class="skill-item">
-                        <span>Python</span>
+                        <span>Python <span class="skill-percentage">70%</span></span>
                         <div class="skill-bar">
-                            <div class="skill-level" style="width: 70%"></div>
+                            <div class="skill-level" style="width: 0%" data-width="70"></div>
                         </div>
                     </div>
                     <div class="skill-item">
-                        <span>SQL</span>
+                        <span>SQL <span class="skill-percentage">65%</span></span>
                         <div class="skill-bar">
-                            <div class="skill-level" style="width: 65%"></div>
+                            <div class="skill-level" style="width: 0%" data-width="65"></div>
                         </div>
                     </div>
                 </div>
@@ -100,21 +115,21 @@
                 <div class="skill-category">
                     <h3>その他</h3>
                     <div class="skill-item">
-                        <span>Git</span>
+                        <span>Git <span class="skill-percentage">85%</span></span>
                         <div class="skill-bar">
-                            <div class="skill-level" style="width: 85%"></div>
+                            <div class="skill-level" style="width: 0%" data-width="85"></div>
                         </div>
                     </div>
                     <div class="skill-item">
-                        <span>Docker</span>
+                        <span>Docker <span class="skill-percentage">60%</span></span>
                         <div class="skill-bar">
-                            <div class="skill-level" style="width: 60%"></div>
+                            <div class="skill-level" style="width: 0%" data-width="60"></div>
                         </div>
                     </div>
                     <div class="skill-item">
-                        <span>AWS</span>
+                        <span>AWS <span class="skill-percentage">55%</span></span>
                         <div class="skill-bar">
-                            <div class="skill-level" style="width: 55%"></div>
+                            <div class="skill-level" style="width: 0%" data-width="55"></div>
                         </div>
                     </div>
                 </div>
@@ -169,53 +184,24 @@
         </div>
     </section>
 
-    <!-- 連絡先 -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">連絡先</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>email@example.com</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fab fa-github"></i>
-                        <span>GitHub: @yourusername</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fab fa-linkedin"></i>
-                        <span>LinkedIn: yourname</span>
-                    </div>
-                </div>
-                <form class="contact-form">
-                    <div class="form-group">
-                        <label for="name">お名前</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">メールアドレス</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">メッセージ</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-submit">送信する</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
     <!-- フッター -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 あなたの名前 - All Rights Reserved</p>
             <div class="social-icons">
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="https://github.com/HIROSN0W" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="mailto:your.email@example.com" aria-label="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
             </div>
+            <p>&copy; 2025 NAKAGAWA HIROYUKI - All Rights Reserved</p>
         </div>
     </footer>
 
