@@ -52,13 +52,13 @@
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-    line-height: 1.7;
+    font-family: 'DotGothic16', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    line-height: 1.8;
     color: var(--text-primary);
     background-color: var(--bg-primary);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     scroll-behavior: smooth;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 400;
 }
 
@@ -113,8 +113,8 @@ section {
 }
 
 h1, h2, h3 {
-    font-weight: 700;
-    letter-spacing: -0.025em;
+    font-weight: 400;
+    letter-spacing: 0.05em;
 }
 
 img {
@@ -173,8 +173,9 @@ a:hover {
     font-size: clamp(1.75rem, 4vw, 2.25rem);
     position: relative;
     color: var(--text-primary);
-    font-weight: 500;
-    letter-spacing: 0.02em;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-shadow: 2px 2px 0px var(--text-secondary), 1px 1px 0px var(--text-secondary);
 }
 
 .section-title::after {
@@ -213,10 +214,11 @@ header .container {
 header h1 {
     font-size: 1.5rem;
     color: var(--text-primary);
-    font-weight: 600;
-    letter-spacing: 0.05em;
+    font-weight: 400;
+    letter-spacing: 0.15em;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-transform: uppercase;
+    text-shadow: 2px 2px 0px var(--text-secondary), 1px 1px 0px var(--text-secondary);
 }
 
 header h1:hover {
@@ -230,13 +232,13 @@ nav ul {
 }
 
 nav ul li a {
-    font-weight: 500;
+    font-weight: 400;
     position: relative;
     padding: 0.5rem 0;
     color: var(--text-secondary);
     font-size: 0.875rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
 }
 
 nav ul li a::after {
@@ -317,9 +319,10 @@ nav ul li a.active::after {
     font-size: clamp(2rem, 6vw, 3rem);
     margin-bottom: 1.5rem;
     font-weight: 400;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.05em;
     line-height: 1.2;
     color: var(--text-primary);
+    text-shadow: 2px 2px 0px var(--text-secondary), 1px 1px 0px var(--text-secondary);
 }
 
 .hero p {
@@ -427,9 +430,10 @@ nav ul li a.active::after {
     margin-bottom: 1.5rem;
     font-size: 1rem;
     color: var(--text-primary);
-    font-weight: 500;
+    font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
+    text-shadow: 1px 1px 0px var(--text-secondary);
 }
 
 .skill-category h3::before {
@@ -449,8 +453,9 @@ nav ul li a.active::after {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0.5rem;
-    font-weight: 500;
+    font-weight: 400;
     color: var(--text-primary);
+    letter-spacing: 0.05em;
 }
 
 .skill-percentage {
@@ -534,7 +539,9 @@ nav ul li a.active::after {
     margin-bottom: 0.75rem;
     font-size: 1.125rem;
     color: var(--text-primary);
-    font-weight: 500;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-shadow: 1px 1px 0px var(--text-secondary);
 }
 
 .project-info p {
