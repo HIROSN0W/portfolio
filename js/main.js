@@ -1,7 +1,7 @@
 // ダークモード切り替え機能
 class ThemeManager {
     constructor() {
-        this.theme = localStorage.getItem('theme') || 'light';
+        this.theme = localStorage.getItem('theme') || 'dark';
         this.themeToggle = document.getElementById('themeToggle');
         this.init();
     }
