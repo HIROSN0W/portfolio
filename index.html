@@ -1,215 +1,266 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ポートフォリオ - NAKAGAWA HIROYUKI</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
-</head>
-<body>
-    <!-- プリローダー -->
-    <div class="preloader" id="preloader">
-        <div class="spinner"></div>
-    </div>
-
-    <!-- ダークモード切り替えボタン -->
-    <button class="theme-toggle" id="themeToggle" aria-label="ダークモード切り替え">
-        <i class="fas fa-moon"></i>
-    </button>
-    <!-- ヘッダー -->
-    <header>
-        <div class="container">
-            <h1>NAKAGAWA HIROYUKI</h1>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="メニューを開く">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <nav>
-                <ul id="mobileMenu">
-                    <li><a href="#about">自己紹介</a></li>
-                    <li><a href="#skills">スキル</a></li>
-                    <li><a href="#projects">プロジェクト</a></li>
-                </ul>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="中川寛之のポートフォリオ。Web、アプリ、AIの実験と制作記録。"
+        />
+        <meta name="theme-color" content="#eaf6f8" />
+        <title>HIROYUKI NAKAGAWA / PORTFOLIO</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div class="noise" aria-hidden="true"></div>
+        <div class="pointer-lens" aria-hidden="true"></div>
+        <header class="site-header">
+            <a class="wordmark" href="#top" aria-label="ページ上部へ">
+                <span class="status-dot"></span>HN / 26
+            </a>
+            <nav aria-label="メインナビゲーション">
+                <a href="#about">ABOUT</a>
+                <a href="#works">WORKS</a>
+                <a href="#articles">ARTICLES</a>
+                <a href="#contact">CONTACT</a>
             </nav>
-        </div>
-    </header>
+            <button
+                class="mode-button"
+                type="button"
+                aria-label="白黒を反転する"
+                aria-pressed="false"
+            >
+                <span>INVERT</span><i></i>
+            </button>
+        </header>
 
-    <!-- メインバナー -->
-    <section class="hero">
-        <div class="container">
-            <h2>ようこそ、私のポートフォリオへ</h2>
-            <p>普段学校で学んでいることや、趣味で取り組んでいるプロジェクトを紹介します。</p>
-            <div class="hero-cta">
-                <a href="#projects" class="btn">プロジェクトを見る</a>
-                <a href="#about" class="btn btn-secondary">詳しく見る</a>
-            </div>
-        </div>
-    </section>
+        <main>
+            <section class="hero" id="top">
+                <canvas id="dot-field" aria-hidden="true"></canvas>
+                <div class="hero-meta">
+                    <p>ENGINEERING STUDENT</p>
+                    <p>JAPAN / <span id="clock">--:--:--</span></p>
+                </div>
+                <div
+                    class="hero-title"
+                    aria-label="Hiroyuki Nakagawa, creative developer"
+                >
+                    <p class="eyebrow"><span>●</span> CREATIVE DEVELOPER</p>
+                    <h1>HIROYUKI<span class="accent red">.</span></h1>
+                    <p class="surname">NAKAGAWA / 中川 寛之</p>
+                </div>
+                <a class="scroll-cue" href="#about"
+                    >SCROLL TO EXPLORE <span>↓</span></a
+                >
+                <div class="shape shape-blue" aria-hidden="true"></div>
+                <div class="shape shape-red" aria-hidden="true"></div>
+            </section>
 
-    <!-- 自己紹介 -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">自己紹介</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>私は、テクノロジーとエンジニアリング、特にWeb・アプリ開発、AI、データサイエンスといった情報技術全般に強い関心を持っています。</p>
-                    <p>学業では電子情報工学を専攻しており、プログラミングやシステム設計について学んでいます。</p>
+            <section class="about section" id="about">
+                <div class="section-index reveal">01 / ABOUT</div>
+                <div class="about-copy reveal">
+                    <p class="lead">
+                        技術とアイデアの間を、<br /><span class="dot-highlight"
+                            >点</span
+                        >から形にする。
+                    </p>
+                    <div class="body-copy">
+                        <p>
+                            電子情報工学を学びながら、Web・アプリ開発、AI、データサイエンスを横断して制作しています。
+                        </p>
+                        <p>
+                            正しく動くだけでなく、触れたくなる体験を。小さな実験を積み重ね、新しい見え方を設計します。
+                        </p>
+                    </div>
                 </div>
-                <div class="about-image">
-                    <!-- プロフィール画像をここに配置 -->
-                    <img src="images\profile.jpeg" alt="プロフィール写真">
+                <figure class="portrait reveal">
+                    <div class="portrait-frame">
+                        <img
+                            src="/images/profile.jpeg"
+                            alt="中川寛之のプロフィール写真"
+                        />
+                    </div>
+                    <figcaption>PORTRAIT_01.JPG / 2026</figcaption>
+                </figure>
+                <div class="profile-data reveal">
+                    <p><span>BASED IN</span> JAPAN</p>
+                    <p><span>FOCUS</span> AUTOMATION / AI / INFRA</p>
+                    <p><span>STATUS</span> OPEN TO IDEAS</p>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- スキル -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">スキル</h2>
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h3>フロントエンド</h3>
-                    <div class="skill-item">
-                        <span>HTML/CSS <span class="skill-percentage">90%</span></span>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="width: 0%" data-width="90"></div>
-                        </div>
+            <section class="skills section" aria-labelledby="skills-title">
+                <div class="section-index reveal">02 / TOOLKIT</div>
+                <h2 id="skills-title" class="marquee-title reveal">
+                    THINGS I USE<span>●</span>
+                </h2>
+                <div class="skill-list reveal">
+                    <div>
+                        <span>01</span>
+                        <h3>AUTOMATION & AI</h3>
+                        <p>OPENCLAW / N8N / AZURE OPENAI / WHISPER / GEMINI</p>
                     </div>
-                    <div class="skill-item">
-                        <span>JavaScript <span class="skill-percentage">85%</span></span>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="width: 0%" data-width="85"></div>
-                        </div>
+                    <div>
+                        <span>02</span>
+                        <h3>APP & API</h3>
+                        <p>TYPESCRIPT / NODE.JS / DISCORD.JS / PUPPETEER / NOTION API</p>
                     </div>
-                    <div class="skill-item">
-                        <span>React <span class="skill-percentage">80%</span></span>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="width: 0%" data-width="80"></div>
-                        </div>
+                    <div>
+                        <span>03</span>
+                        <h3>INFRA & NETWORK</h3>
+                        <p>RASPBERRY PI / DOCKER / TAILSCALE / DNS / SYSTEMD</p>
                     </div>
                 </div>
-                
-                <div class="skill-category">
-                    <h3>バックエンド</h3>
-                    <div class="skill-item">
-                        <span>Node.js <span class="skill-percentage">75%</span></span>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="width: 0%" data-width="75"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <span>Python <span class="skill-percentage">70%</span></span>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="width: 0%" data-width="70"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <span>SQL <span class="skill-percentage">65%</span></span>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="width: 0%" data-width="65"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>その他</h3>
-                    <div class="skill-item">
-                        <span>Git <span class="skill-percentage">85%</span></span>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="width: 0%" data-width="85"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <span>Docker <span class="skill-percentage">60%</span></span>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="width: 0%" data-width="60"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <span>AWS <span class="skill-percentage">55%</span></span>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="width: 0%" data-width="55"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- プロジェクト -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">プロジェクト</h2>
-            <div class="projects-grid">
-                <!-- プロジェクト1 -->
-                <div class="project-card">
-                    <img src="images/project1.jpg" alt="プロジェクト1">
-                    <div class="project-info">
-                        <h3>プロジェクト名1</h3>
-                        <p>このプロジェクトの説明。使用した技術やあなたの役割について詳しく説明してください。</p>
-                        <div class="project-links">
-                            <a href="#" class="btn">詳細を見る</a>
-                            <a href="#" class="btn">ソースコード</a>
-                        </div>
-                    </div>
+            <section class="works section" id="works">
+                <div class="works-heading reveal">
+                    <div class="section-index">03 / SELECTED WORKS</div>
+                    <h2>PROJECTS<span class="accent blue">.</span></h2>
+                    <p>実験、制作、学習の記録。</p>
                 </div>
-                
-                <!-- プロジェクト2 -->
-                <div class="project-card">
-                    <img src="images/project2.jpg" alt="プロジェクト2">
-                    <div class="project-info">
-                        <h3>プロジェクト名2</h3>
-                        <p>このプロジェクトの説明。使用した技術やあなたの役割について詳しく説明してください。</p>
-                        <div class="project-links">
-                            <a href="#" class="btn">詳細を見る</a>
-                            <a href="#" class="btn">ソースコード</a>
-                        </div>
-                    </div>
+                <div
+                    class="filters reveal"
+                    role="group"
+                    aria-label="作品の絞り込み"
+                >
+                    <button class="active" data-filter="all" type="button">
+                        ALL
+                    </button>
+                    <button data-filter="infra" type="button">INFRA</button>
+                    <button data-filter="automation" type="button">AUTOMATION</button>
+                    <button data-filter="ai" type="button">AI</button>
                 </div>
-                
-                <!-- プロジェクト3 -->
-                <div class="project-card">
-                    <img src="images/project3.jpg" alt="プロジェクト3">
-                    <div class="project-info">
-                        <h3>プロジェクト名3</h3>
-                        <p>このプロジェクトの説明。使用した技術やあなたの役割について詳しく説明してください。</p>
-                        <div class="project-links">
-                            <a href="#" class="btn">詳細を見る</a>
-                            <a href="#" class="btn">ソースコード</a>
-                        </div>
-                    </div>
+                <div class="project-grid">
+                    <article class="project-card reveal" data-category="infra">
+                        <a
+                            href="https://note.com/iq180man/n/n28a38846563f"
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label="ラズパイで広告ブロックサーバー作った話を読む"
+                        >
+                            <div class="project-visual visual-grid">
+                                <span>DNS<br />01</span>
+                            </div>
+                            <div class="project-text">
+                                <p>2026 / INFRASTRUCTURE</p>
+                                <h3>AD BLOCK<br />DNS SERVER</h3>
+                                <span>READ ↗</span>
+                            </div>
+                        </a>
+                    </article>
+                    <article class="project-card reveal" data-category="automation ai">
+                        <a
+                            href="https://note.com/iq180man/n/n779404defd3b"
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label="n8nでDiscord議事録を全自動化した話を読む"
+                        >
+                            <div class="project-visual visual-type">
+                                <span>録</span><i></i>
+                            </div>
+                            <div class="project-text">
+                                <p>2026 / AUTOMATION + AI</p>
+                                <h3>DISCORD<br />MINUTES</h3>
+                                <span>READ ↗</span>
+                            </div>
+                        </a>
+                    </article>
+                    <article class="project-card reveal" data-category="automation ai">
+                        <a
+                            href="https://note.com/iq180man/n/nd8dac3435cbe"
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label="NotionとOpenClawで構築する自律タスク管理システムを読む"
+                        >
+                            <div class="project-visual visual-dots">
+                                <span>OC</span>
+                            </div>
+                            <div class="project-text">
+                                <p>2026 / AI AGENT</p>
+                                <h3>AUTONOMOUS<br />TASK SYSTEM</h3>
+                                <span>READ ↗</span>
+                            </div>
+                        </a>
+                    </article>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- フッター -->
-    <footer>
-        <div class="container">
-            <div class="social-icons">
-                <a href="https://github.com/HIROSN0W" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://note.com/hardthinker" target="_blank" rel="noopener noreferrer" aria-label="Note">
-                    <i class="fa-duotone fa-solid fa-n"></i>
-                </a>
-                <a href="https://instagram.com/13.hiro_" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="mailto:your.email@example.com" aria-label="Email">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            </div>
-            <p>&copy; 2025 NAKAGAWA HIROYUKI - All Rights Reserved</p>
-        </div>
-    </footer>
+            <section class="articles section" id="articles">
+                <div class="section-index reveal">04 / NOTE ARTICLES</div>
+                <div class="articles-heading reveal">
+                    <h2>FIELD<br />NOTES<span class="accent red">.</span></h2>
+                    <p>作って、詰まって、理解したこと。<br />実装の過程をnoteに記録しています。</p>
+                </div>
+                <div class="article-list">
+                    <a class="article-row reveal" href="https://note.com/iq180man/n/nd8dac3435cbe" target="_blank" rel="noreferrer">
+                        <span class="article-number">#021</span><h3>Notion × OpenClaw で構築する自律タスク管理システム</h3><span class="article-tags">OPENCLAW / NOTION API / CRON</span><time datetime="2026-07-15">2026.07.15</time><i>↗</i>
+                    </a>
+                    <a class="article-row reveal" href="https://note.com/iq180man/n/n2f1f783bca2d" target="_blank" rel="noreferrer">
+                        <span class="article-number">#020</span><h3>「OpenClaw」を運用するまでにやったこと</h3><span class="article-tags">RASPBERRY PI / AI AGENT / GIT</span><time datetime="2026-07-15">2026.07.15</time><i>↗</i>
+                    </a>
+                    <a class="article-row reveal" href="https://note.com/iq180man/n/n779404defd3b" target="_blank" rel="noreferrer">
+                        <span class="article-number">#019</span><h3>n8nでDiscord議事録を全自動化した話</h3><span class="article-tags">N8N / WHISPER / DISCORD.JS</span><time datetime="2026-05-26">2026.05.26</time><i>↗</i>
+                    </a>
+                    <a class="article-row reveal" href="https://note.com/iq180man/n/ndf8b6d3ca08e" target="_blank" rel="noreferrer">
+                        <span class="article-number">#017</span><h3>TailscaleによるVPN構築</h3><span class="article-tags">TAILSCALE / VPN / DNS</span><time datetime="2026-03-28">2026.03.28</time><i>↗</i>
+                    </a>
+                    <a class="article-row reveal" href="https://note.com/iq180man/n/n28a38846563f" target="_blank" rel="noreferrer">
+                        <span class="article-number">#016</span><h3>ラズパイで広告ブロックサーバー作った話</h3><span class="article-tags">RASPBERRY PI / DOCKER / ADGUARD</span><time datetime="2026-01-24">2026.01.24</time><i>↗</i>
+                    </a>
+                    <a class="article-row reveal" href="https://note.com/iq180man/n/nb60be6939ce0" target="_blank" rel="noreferrer">
+                        <span class="article-number">#001</span><h3>OpenSimを触る</h3><span class="article-tags">OPENSIM / BIOMECHANICS</span><time datetime="2025-05-16">2025.05.16</time><i>↗</i>
+                    </a>
+                </div>
+                <a class="all-articles reveal" href="https://note.com/iq180man" target="_blank" rel="noreferrer">VIEW ALL ON NOTE <span>↗</span></a>
+            </section>
 
-    <script src="js/main.js"></script>
-</body>
+            <section class="contact section" id="contact">
+                <div class="section-index reveal">05 / CONTACT</div>
+                <p class="contact-kicker reveal">HAVE AN IDEA?</p>
+                <a
+                    class="contact-title reveal"
+                    href="mailto:your.email@example.com"
+                    >LET'S TALK<span>↗</span></a
+                >
+                <div class="contact-bottom reveal">
+                    <p>
+                        新しい技術、面白いアイデア、制作のお誘い。<br />気軽に声をかけてください。
+                    </p>
+                    <div class="social-links">
+                        <a
+                            href="https://github.com/HIROSN0W"
+                            target="_blank"
+                            rel="noreferrer"
+                            >GITHUB ↗</a
+                        >
+                        <a
+                            href="https://note.com/iq180man"
+                            target="_blank"
+                            rel="noreferrer"
+                            >NOTE ↗</a
+                        >
+                        <a
+                            href="https://instagram.com/13.hiro_"
+                            target="_blank"
+                            rel="noreferrer"
+                            >INSTAGRAM ↗</a
+                        >
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© <span id="year"></span> HIROYUKI NAKAGAWA</p>
+            <p>DESIGNED WITH DOTS / BUILT WITH TYPESCRIPT</p>
+            <a href="#top">BACK TO TOP ↑</a>
+        </footer>
+        <script type="module" src="/src/main.ts"></script>
+    </body>
 </html>

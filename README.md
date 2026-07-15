@@ -14,10 +14,9 @@
 
 ## 使用技術
 
-- HTML5
-- CSS3
-- JavaScript (バニラ)
-- Font Awesome (アイコン)
+- HTML5 / CSS3
+- TypeScript
+- Vite
 
 ## 使い方
 
@@ -26,18 +25,23 @@
    git clone https://github.com/yourusername/portfolio.git
    ```
 
-2. 必要に応じてコンテンツを編集する
+2. 依存関係をインストールして開発サーバーを起動する
+   ```
+   npm install
+   npm run dev
+   ```
+
+3. 必要に応じてコンテンツを編集する
    - `index.html` - メインコンテンツ
-   - `css/styles.css` - スタイリング
-   - `js/main.js` - インタラクション
+   - `src/styles.css` - スタイリング
+   - `src/main.ts` - インタラクション
    - `images/` - 画像ファイル
 
-3. 画像を追加する
-   - プロフィール画像: `images/profile.jpg`
-   - プロジェクト画像: `images/project1.jpg`, `images/project2.jpg`, `images/project3.jpg`
-   - ヒーローバナー背景: `images/hero-bg.jpg`
+4. 画像を変更する
+   - プロフィール画像: `images/profile.jpeg`
+   - 作品ビジュアルは `src/styles.css` のパターンから生成されます
 
-4. コンテンツをカスタマイズ
+5. コンテンツをカスタマイズ
    - 自分の情報に合わせて各セクションのテキストとリンクを更新
    - スキルレベルのパーセンテージを調整
    - プロジェクトの説明とリンクを追加
