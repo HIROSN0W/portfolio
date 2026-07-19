@@ -49,7 +49,7 @@ filterButtons.forEach((button) => button.addEventListener('click', () => {
   });
 }));
 
-const canvas = select<HTMLCanvasElement>('#dot-field');
+const canvas = select<HTMLCanvasElement>('#ascii-field');
 const context = canvas?.getContext('2d');
 const pointerLens = select<HTMLElement>('.pointer-lens');
 let pointer = { x: -1000, y: -1000 };
@@ -83,7 +83,9 @@ const movePointerLens = (event: PointerEvent) => {
   if (!lensFrame) lensFrame = window.requestAnimationFrame(animatePointerLens);
 };
 
-const drawDots = () => {
+const asciiRamp = ' .:-=+*#%@';
+
+const drawAsciiField = () => {
   if (!canvas || !context) return;
   const ratio = Math.min(window.devicePixelRatio, 2);
   const width = canvas.clientWidth;
@@ -95,27 +97,43 @@ const drawDots = () => {
   }
   context.clearRect(0, 0, width, height);
   const dark = document.body.classList.contains('inverted');
-  const spacing = width < 600 ? 18 : 22;
-  const drift = Math.sin(frame * 0.012) * 2;
+  const characterWidth = width < 600 ? 10 : 13;
+  const lineHeight = width < 600 ? 14 : 17;
+  const fontSize = width < 600 ? 9 : 11;
+  const centerX = width < 600 ? width * .72 : width * .76;
+  const centerY = height * .46;
+  const radiusX = width < 600 ? width * .31 : width * .23;
+  const radiusY = height * .34;
+  context.font = `${fontSize}px "IBM Plex Mono", monospace`;
+  context.textAlign = 'center';
+  context.textBaseline = 'middle';
   if (pointer.x > -500 && renderedPointer.x < -500) renderedPointer = { ...pointer };
   if (pointer.x > -500) {
     renderedPointer.x += (pointer.x - renderedPointer.x) * 0.1;
     renderedPointer.y += (pointer.y - renderedPointer.y) * 0.1;
   }
-  for (let y = spacing / 2; y < height; y += spacing) {
-    for (let x = spacing / 2; x < width; x += spacing) {
+  for (let y = lineHeight / 2, row = 0; y < height; y += lineHeight, row += 1) {
+    for (let x = characterWidth / 2, column = 0; x < width; x += characterWidth, column += 1) {
+      const normalizedX = (x - centerX) / radiusX;
+      const normalizedY = (y - centerY) / radiusY;
+      const radius = Math.hypot(normalizedX, normalizedY);
+      const texture = (Math.sin(normalizedX * 8 + normalizedY * 5 + frame * .018) + 1) / 2;
+      const contour = Math.max(0, 1 - Math.abs(radius - .7) * 5);
+      const noise = ((column * 17 + row * 31) % 101) / 100;
+      let density = radius < 1 ? .12 + texture * .3 + contour * .48 : noise > .975 ? .12 : 0;
       const distance = Math.hypot(renderedPointer.x - x, renderedPointer.y - y);
       const influence = Math.max(0, 1 - distance / 150);
-      const radius = .65 + influence * 1.5;
-      const offsetX = influence ? (x - renderedPointer.x) * influence * .025 : drift;
-      context.beginPath();
-      context.arc(x + offsetX, y, radius, 0, Math.PI * 2);
-      context.fillStyle = dark ? `rgba(234,246,248,${.14 + influence * .45})` : `rgba(9,11,12,${.12 + influence * .48})`;
-      context.fill();
+      density = Math.min(1, density + influence * .72);
+      const character = asciiRamp[Math.floor(density * (asciiRamp.length - 1))];
+      if (character === ' ') continue;
+      const offsetX = influence ? (x - renderedPointer.x) * influence * .035 : 0;
+      const alpha = .18 + density * .62;
+      context.fillStyle = dark ? `rgba(234,246,248,${alpha})` : `rgba(9,11,12,${alpha})`;
+      context.fillText(character, x + offsetX, y);
     }
   }
   frame += 1;
-  requestAnimationFrame(drawDots);
+  requestAnimationFrame(drawAsciiField);
 };
 
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -129,4 +147,4 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     pointerLens?.classList.remove('active');
   });
 }
-drawDots();
+drawAsciiField();
